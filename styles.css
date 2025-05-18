@@ -8,17 +8,18 @@ body {
     white 50%,
     white 100%
   );
+  margin: 0 10em;
 }
 
 nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-evenly;
   height: 100px;
-  width: 100%;
+  width: auto;
   box-sizing: border-box;
   flex-direction: row;
-  position: fixed;
+  /* position: fixed; */
 }
 
 .nav-btn {
@@ -48,7 +49,6 @@ li {
 }
 
 .work-btn {
-  margin-right: 5.813rem;
   border-radius: 4rem;
   font-size: 1.1rem;
   border-style: none;
@@ -71,21 +71,22 @@ li {
 }
 
 .fake-browser {
-  background-color: #0b20c0;
+  background-color: #F2F2F2;
   box-sizing: border-box;
-  border: 5px solid #050b45;
+  border: 5px solid #000000;
   height: 440px;
   width: 411px;
+  margin: 5rem 5rem 0 0;
 }
 
 .fake-nav {
-  background-color: #0b20c0;
+  background-color: #393E46;
   box-sizing: border-box;
-  border-bottom: 5px solid #050b45;
+  border-bottom: 5px solid #000000;
 }
 
 .fake-close {
-  background-color: #b3b4bd;
+  background-color: #F2F2F2;
   box-sizing: border-box;
   height: 38px;
   width: 43px;
@@ -106,9 +107,31 @@ li {
 
 .hero {
   display: flex;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
+  justify-content: space-between;
   height: 100vh;
   width: 100%;
   box-sizing: border-box;
+}
+
+h2 {
+  font-size: 3rem;
+  font-family: "Cascadia Code", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+
+.hero-text {
+  display: flex;
+  padding-top: 10rem;
+  flex-direction: column;
+  justify-content:flex-start;
+  align-items: flex-start;
+  margin: 0 20rem 0 10rem;
+  height: 100vh;
+  width: 100%;
+}
+
+.portfolio {
+  color: white;
 }
