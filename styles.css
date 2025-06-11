@@ -187,3 +187,91 @@ li {
   height: 440px;
   width: 500px;
 }
+
+.contact {
+  background-image: conic-gradient(
+    white 0deg,
+    white 90deg,
+    black 90deg,
+    black 180deg,
+    black 270deg,
+    white 270deg
+  );
+  height: 100vh;
+}
+.contact-header {
+  color: black;
+  margin: 0;
+  text-align: center;
+  font-size: 56px;
+  padding-top: 10vh;
+}
+
+.contact-browser {
+  width: 90vh;
+  height: 60vh;
+}
+
+.contact-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.contact-section {
+  display: flex;
+  margin: 40px 0px;
+  justify-content: space-around;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin: 0px 0px 0px 40px;
+  align-items: first baseline;
+}
+
+input,
+textarea {
+  border: none;
+  margin: 8px 8px;
+  border-radius: 4px;
+  width: 100%;
+  padding: 12px 20px;
+  border: 2px solid transparent;
+  resize: none;
+}
+
+.contact-btn {
+  border-radius: 4rem;
+  font-size: 1.1rem;
+  border-style: none;
+  background-color: black;
+  color: white;
+  display: flex;
+  height: 40px;
+  width: 200px;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+footer > p {
+  background-color: #000;
+  color: white;
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-icn > a > img {
+  width: 44px;
+  height: 44px;
+  margin: 5px;
+  padding-top: 210px;
+}
+
+a {
+  text-decoration: none;
+}
