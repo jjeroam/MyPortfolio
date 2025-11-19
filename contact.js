@@ -26,9 +26,14 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Your message has been sent!");
         form.reset();
       } else {
-        const errorData = await response.json();
+        let errorData;
+        try {
+          errorData = await response.json();
+        } catch {
+          errorData = { message: await response.text() }; // fallback to plain text
+        }
         console.error("Server error:", errorData);
-        alert("Failed to send message. Try again later.");
+        alert(errorData.message || "Failed to send message. Try again later.");
       }
     } catch (error) {
       console.error("Network error:", error);
