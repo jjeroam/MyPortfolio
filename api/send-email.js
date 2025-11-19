@@ -1,48 +1,37 @@
-require("dotenv").config({ path: "../.env" });
-const express = require("express");
-const axios = require("axios");
-const cors = require("cors");
+// /api/send-email.js
+import axios from "axios";
 
-const app = express();
-app.use(cors());
-app.use(express.json());
+export default async function handler(req, res) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ status: "fail", message: "Method not allowed" });
+  }
 
-const PORT = process.env.PORT;
+  const { name, email, message } = req.body;
 
-app.post("/send-email", async (req, res) => {
-  const { name, email, message } = req.body || {};
+  if (!name || !email || !message) {
+    return res.status(400).json({ status: "fail", message: "Missing required fields" });
+  }
 
   try {
-    const payload = {
-      service_id: process.env.EMAILJS_SERVICE_ID,
-      template_id: process.env.EMAILJS_TEMPLATE_ID,
-      user_id: process.env.EMAILJS_PUBLIC_KEY,
-      template_params: {
-        name: name,
-        email: email,
-        message: message,
-      },
-    };
-
-    const response = await axios.post(
+    await axios.post(
       "https://api.emailjs.com/api/v1.0/email/send",
-      payload,
+      {
+        service_id: process.env.EMAILJS_SERVICE_ID,
+        template_id: process.env.EMAILJS_TEMPLATE_ID,
+        user_id: process.env.EMAILJS_PUBLIC_KEY,
+        template_params: { name, email, message },
+      },
       {
         headers: {
-          Authorization: `Bearer ${process.env.EMAILJS_PRIVATE_KEY}`, // <-- NEW REQUIRED AUTH
+          Authorization: `Bearer ${process.env.EMAILJS_PRIVATE_KEY}`,
           "Content-Type": "application/json",
-          origin: "http://localhost",
         },
       }
     );
 
-    res.json({ status: "success", data: response.data });
+    res.status(200).json({ status: "success" });
   } catch (err) {
     console.error("EmailJS Error:", err.response?.data || err.message);
-    res.status(500).json({ status: "fail", error: err.response?.data });
+    res.status(500).json({ status: "fail", error: err.response?.data || err.message });
   }
-});
-
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
+}
