@@ -26,11 +26,13 @@ document.addEventListener("DOMContentLoaded", () => {
         alert("Your message has been sent!");
         form.reset();
       } else {
+        // Read the body once, try JSON first, fallback to text
         let errorData;
+        const text = await response.text(); // read body once
         try {
-          errorData = await response.json();
+          errorData = JSON.parse(text); // try parsing JSON
         } catch {
-          errorData = { message: await response.text() }; // fallback to plain text
+          errorData = { message: text }; // fallback to plain text
         }
         console.error("Server error:", errorData);
         alert(errorData.message || "Failed to send message. Try again later.");
